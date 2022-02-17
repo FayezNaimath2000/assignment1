@@ -1,32 +1,20 @@
 require 'csv'
-#require student.rb
-#require course.rb
+require './Student'
+require './Course'
 
-class Course
-    def initialize(course_ID, numberSections, minSeats, maxSeats)
-        @cust_course = course_ID
-        @cust_sections = numberSections
-        @cust_min = minSeats
-        @cust_max = maxSeats
-    end
-    def printCount()
-        puts "dsfs #@cust_sections"
-    end    
-end
-
-student = Array.new;
-#CSV.foreach(("course_constraints.csv"), headers: true, col_sep: ",") do |row|    
+students = Array.new;
+classes = Array.new;
+#CSV.foreach("course_constraints.csv", { encoding: "UTF-8", headers: true, converters: :all}) do |row|
+#    students << row.to_hash
 #end
+csvarray = []
+File.open("student_pref.csv", "r").each_line { |csvrecord|
+    csvarray << csvrecord.chomp.split(",")
+}
+puts csvarray[6][2]
 
-CSV.foreach("course_constaints.csv", { encoding: "UTF-8", headers: true, header_converters: :symbol, converters: :all}) do |row|
-    student << row.to_hash
-end
+#students.each_with_index {Student.new(:Student_ID, :College_Year, :List_of_courses_taken, :Semesters_left_to_graduate, :Number_of_courses_desired, :First_Choice_Course, :Second_Choice_Course, :Third_Choice_Course)}
+#students.each_with_index {Course.new(:course_Number, :number_of_sections, :minimum_number_of_seats, :maximum_number_of_seats)}
 
-puts student
-#class1 = Course.new(342, "sdfs", 324, 4535)
+#class1 = Course.new("234", 34, 34, 23)
 #class1.printCount()
-
-#table = CSV.parse(File.read("courses.csv"), headers: false)
-#table2 = CSV.parse(File.read("students.csv"), headers: false)
-
-#table.by_col[1] = 
