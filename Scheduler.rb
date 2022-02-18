@@ -3,7 +3,7 @@ require './Student'
 require './Course'
 
 studentInput = []
-File.open("student_pref.csv").each_line { |csvrecord|
+File.open("student_pref.csv").each_line { |csvrecord|       #make the file name user input
     studentInput << csvrecord.chomp.split(",")
 }
 studentArray = []
@@ -31,8 +31,20 @@ studentInput.each do |sub|
             array << sub[a]    
         end
     end
-    
+
     studentArray[x].coursesTaken(array)
     x = x + 1
 end   
-puts studentArray[0].show()     
+
+
+
+coursesInput = []
+File.open("course_constraints.csv").each_line { |csvrecord|     #make the file name user input
+    coursesInput << csvrecord.chomp.split(",")
+}
+coursesArray = []
+coursesInput.shift()
+coursesInput.each do |sub|
+    coursesArray << Course.new(sub[0], sub[1], sub[2], sub[3])
+end
+

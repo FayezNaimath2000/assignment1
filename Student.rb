@@ -1,17 +1,17 @@
 class Student
     
-    def assignPriority(year, semester, firstchoice, secondchoice, thirdchoice, numberOfCourses)
+    def assignPriority(numberOfCourses)
         @priority = 0
-        if year == "Senior"
+        if @cust_year == "Senior"
             @priority += 3
         end
-        if year == "Junior"
+        if @cust_year == "Junior"
             @priority += 2
         end
-        if year == "Sophomore"
+        if @cust_year == "Sophomore"
             @priority += 1
         end
-        if year == "First year student"
+        if @cust_year == "First year student"
             @priority += 0
         end
         @priority = @priority - @cust_semester
@@ -21,23 +21,21 @@ class Student
     def initialize(student_ID, year, semester, coursesDesired, firstchoice, secondchoice, thirdchoice)
         @cust_ID = student_ID
         @cust_year = year                   #convert to integers
+        semester = semester.to_i
         @cust_semester = semester
+        coursesDesired = coursesDesired.to_i
         @cust_desired = coursesDesired
                         #make this into an array
         @cust_firstchoice = firstchoice
         @cust_secondchoice = secondchoice
         @cust_thirdchoice = thirdchoice
     end
-
-    def output
-        puts @cust_thirdchoice
-    end
-
+    
     def coursesTaken(courses)   #array
         @cust_courses = courses
     end
     def show()
-        @cust_courses
+        @cust_desired
     end
     def course1(firstcourse)
         @course1 = firstcourse
