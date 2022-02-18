@@ -2,19 +2,37 @@ require 'csv'
 require './Student'
 require './Course'
 
-students = Array.new;
-classes = Array.new;
-#CSV.foreach("course_constraints.csv", { encoding: "UTF-8", headers: true, converters: :all}) do |row|
-#    students << row.to_hash
-#end
-csvarray = []
-File.open("student_pref.csv", "r").each_line { |csvrecord|
-    csvarray << csvrecord.chomp.split(",")
+studentInput = []
+File.open("student_pref.csv").each_line { |csvrecord|
+    studentInput << csvrecord.chomp.split(",")
 }
-puts csvarray[6][2]
+studentArray = []
+studentInput.shift()
+studentInput.each do |sub|
+    a = sub.length()
+    studentArray << Student.new(sub[0], sub[1], sub[a-5], sub[a-4], sub[a-3], sub[a-2], sub[a-1])
+end
 
-#students.each_with_index {Student.new(:Student_ID, :College_Year, :List_of_courses_taken, :Semesters_left_to_graduate, :Number_of_courses_desired, :First_Choice_Course, :Second_Choice_Course, :Third_Choice_Course)}
-#students.each_with_index {Course.new(:course_Number, :number_of_sections, :minimum_number_of_seats, :maximum_number_of_seats)}
-
-#class1 = Course.new("234", 34, 34, 23)
-#class1.printCount()
+x = 0
+studentInput.each do |sub|
+    array = []
+    len = sub.length()
+    for a in 2..(len-5)
+        if (sub[a] == sub[len-6])
+            word1 = sub[a]
+            length = word1.length()
+            sub[a] = word1[1..(length - 2)]
+            array << sub[a]
+            break
+        else
+            word = sub[a]
+            length = word.length()
+            sub[a] = word[1..(length - 1)]
+            array << sub[a]    
+        end
+    end
+    
+    studentArray[x].coursesTaken(array)
+    x = x + 1
+end   
+puts studentArray[0].show()     
