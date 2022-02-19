@@ -17,8 +17,8 @@ class Student
             @priority += 0
         end
         @priority = @priority - @cust_semester
-        @priority = @priority + @cust_courses.length()   #incorporate the number of courses somehow
-                                                    #calc for when students make 2nd or 3rd choice unless they took every other course
+        @priority = @priority + @cust_courses.length()   #calculate priority by having point system for the traits that the student has
+                                                    
         if (@cust_secondchoice == "N/A")
             @priority = @priority - 1
         end
@@ -29,9 +29,9 @@ class Student
     def priority()
         @priority
     end    
-    def initialize(student_ID, year, semester, coursesDesired, firstchoice, secondchoice, thirdchoice)
+    def initialize(student_ID, year, semester, coursesDesired, firstchoice, secondchoice, thirdchoice)  #initialize variables
         @cust_ID = student_ID
-        @cust_year = year                   #convert to integers
+        @cust_year = year                   
         semester = semester.to_i
         @cust_semester = semester
         coursesDesired = coursesDesired.to_i
@@ -43,7 +43,7 @@ class Student
     def ID()
         @cust_ID
     end
-    def coursesTaken(courses)   #array
+    def coursesTaken(courses)   
         @cust_courses = courses
     end
     def firstchoice()

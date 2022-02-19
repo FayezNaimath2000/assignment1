@@ -1,0 +1,7 @@
+Instructions: 
+Simply enter “ruby Scheduler.rb” into the terminal. Make sure the input files are “student_pref.csv” and “course_constraints.csv”
+
+Issues: I was not able to create the 2-d array that would have stored the students in the sections for courses 
+that would be in the Course objects. I did not implement what would happen if a student did not get their first, 2nd, or 3rd choices. 
+I also did not implement the user input and I hardcoded the csv file names. 
+I did not get to the stage where it could generate output files

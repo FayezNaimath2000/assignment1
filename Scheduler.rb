@@ -6,33 +6,33 @@ def assignClasses(studentArray, coursesArray)
     n = studentArray.length() - 1 
     m = coursesArray.length() - 1
     for y in 0..m
-        coursesArray[m].array()
+        coursesArray[y].array() #create the arrays for each course
     end
     for x in 0..n
         for y in 0..m
-            if studentArray[n].firstchoice() == coursesArray[m].course()
-                if (coursesArray[m].space() == "free") && (studentArray[n].course_1().nil?)    
-                    coursesArray[m].enroll()
-                    studentArray[n].course1(coursesArray[m].course())
-                elsif (coursesArray[m].space() == "free") && (studentArray[n].course_2().nil?)
-                    coursesArray[m].enroll()
-                    studentArray[n].course2(coursesArray[m].course())
+            if studentArray[x].firstchoice() == coursesArray[y].course()
+                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)    #enroll the students into the courses provided that they meet all of the requirements
+                    coursesArray[y].enroll()
+                    studentArray[x].course1(coursesArray[y].course())
+                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
+                    coursesArray[y].enroll()
+                    studentArray[x].course2(coursesArray[y].course())
                 end
-            elsif studentArray[n].secondchoice() == coursesArray[m].course()
-                if (coursesArray[m].space() == "free") && (studentArray[n].course_1().nil?)
-                    coursesArray[m].enroll()
-                    studentArray[n].course1(coursesArray[m].course())
-                elsif (coursesArray[m].space() == "free") && (studentArray[n].course_2().nil?)
-                    coursesArray[m].enroll()
-                    studentArray[n].course2(coursesArray[m].course())
+            elsif studentArray[x].secondchoice() == coursesArray[y].course()
+                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)
+                    coursesArray[y].enroll()
+                    studentArray[x].course1(coursesArray[y].course())
+                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
+                    coursesArray[y].enroll()
+                    studentArray[x].course2(coursesArray[y].course())
                 end
-            elsif studentArray[n].thirdchoice() == coursesArray[m].course()
-                if (coursesArray[m].space() == "free") && (studentArray[n].course_1().nil?)
-                    coursesArray[m].enroll()
-                    studentArray[n].course1(coursesArray[m].course())
-                elsif (coursesArray[m].space() == "free") && (studentArray[n].course_2().nil?)
-                    coursesArray[m].enroll()
-                    studentArray[n].course2(coursesArray[m].course())
+            elsif studentArray[x].thirdchoice() == coursesArray[y].course()
+                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)
+                    coursesArray[y].enroll()
+                    studentArray[x].course1(coursesArray[y].course())
+                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
+                    coursesArray[y].enroll()
+                    studentArray[x].course2(coursesArray[y].course())
                 end
             end 
         end
@@ -42,11 +42,11 @@ end
 def sortPriority(studentArray)
     n = studentArray.length() - 1 
     for x in 0..n
-        studentArray[x].assignPriority()
+        studentArray[x].assignPriority()    #call the function to assign priority for each student
     end
     for b in 0..n
         for c in 0..b
-            if (studentArray[b].priority() > studentArray[c].priority())
+            if (studentArray[b].priority() > studentArray[c].priority())    #sort the students based on their priority score
                 temp = studentArray[c]
                 studentArray[c] = studentArray[b]
                 studentArray[b] = temp
@@ -64,7 +64,7 @@ studentArray = []
 studentInput.shift()
 studentInput.each do |sub|          
     a = sub.length()
-    studentArray << Student.new(sub[0], sub[1], sub[a-5], sub[a-4], sub[a-3], sub[a-2], sub[a-1])
+    studentArray << Student.new(sub[0], sub[1], sub[a-5], sub[a-4], sub[a-3], sub[a-2], sub[a-1])   #store student input data into array of student objects
 end
 x = 0 
 studentInput.each do |sub|           
@@ -74,8 +74,8 @@ studentInput.each do |sub|
         if (sub[a] == sub[len-6])       
             word1 = sub[a]
             length = word1.length()
-            sub[a] = word1[1..(length - 2)]         
-            array << sub[a]
+            sub[a] = word1[1..(length - 2)]         #make sure each of the courses in the "courses already taken" is put into an array seperately and take out the quotation marks and spaces
+            array << sub[a]                                   
             break
         else
             word = sub[a]
@@ -84,7 +84,7 @@ studentInput.each do |sub|
             array << sub[a]    
         end
     end
-    studentArray[x].coursesTaken(array)
+    studentArray[x].coursesTaken(array)             #put array containing all courses student has taken into class instance
     x = x + 1
 end   
 
@@ -100,4 +100,5 @@ end
 
 sortPriority(studentArray)          #sort the students by priority
 assignClasses(studentArray, coursesArray)   #assign students to courses
+
 

@@ -17,21 +17,15 @@ class Course
     def array()
         @array = Array.new(@cust_sections) { Array.new(@maxSeats){0}}       #create the array that will have the sections with students
         for i in (0...(@array.size() - 1))
-            #for j in (0...(@array[].size() - 1))
             @array[i][0] = (i + 1) 
-        end
-        for i in (0...(@array.size() - 1))
-            for j in (0...(@array.length() - 1))    
-            puts @array[i][j] 
-            end
         end
     end
     def array1()
         @array
     end
-    def enroll(student)
+    def enroll(student)                         #place the student ID of students who will be enrolled into the section
         change = 1 
-        for i in (0...(@array.size - 1))
+        for i in (0...(@array.size() - 1))
             for j in (0...(@minSeats -1))
                 if (@array[i][j] == "emp")
                     @array[i][j] = student
@@ -39,8 +33,8 @@ class Course
                 end
             end
         end
-        if (change == 1)
-            for i in (0...(@array.size - 1))
+        if (change == 1)                        #first have it fill up to minimum number of seats then switch and fill the rest of the seats til the max
+            for i in (0...(@array.size() - 1))
                 for j in (@minSeats...(@maxSeats -1))
                     if (@array[i][j] == "emp")
                         @array[i][j] = student
@@ -49,9 +43,9 @@ class Course
             end
         end
         puts @array
-    end
+    end                 #check whether there is space in the sections 
     def space()
-        for i in (0...(@array.size - 1))        #check where there is 
+        for i in (0...(@array.size - 1))        
             for j in (0...@array[i].length)
                 if (@array[i][j] == "emp")
                     return "free"
