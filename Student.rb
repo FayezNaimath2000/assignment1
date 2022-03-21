@@ -40,7 +40,7 @@ class Student
         @cust_secondchoice = secondchoice
         @cust_thirdchoice = thirdchoice
     end
-    def ID()
+    def id()
         @cust_ID
     end
     def coursesTaken(courses)   
