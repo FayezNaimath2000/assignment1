@@ -2,51 +2,46 @@ require 'csv'
 require './Student'
 require './Course'
 
+def place(studentArray, coursesArray, x, y)
+    if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)    #enroll the students into the courses provided that they meet all of the requirements
+        coursesArray[y].enroll(studentArray[x].id())
+        studentArray[x].course1(coursesArray[y].course())
+    elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
+        coursesArray[y].enroll(studentArray[x].id())
+        studentArray[x].course2(coursesArray[y].course())
+    end
+end
+
+def createArray(coursesArray, m)
+    for z in 0..m
+        coursesArray[z].array() #create the arrays for each course
+    end
+end
 
 def assignClasses(studentArray, coursesArray)
     n = studentArray.length() - 1 
     m = coursesArray.length() - 1
-    for y in 0..m
-        coursesArray[y].array() #create the arrays for each course
-    end
+    createArray(coursesArray, m)
     for x in 0..n
         for y in 0..m
-            
-=begin
-    for x in 0..n
-        for y in 0..m
-            if studentArray[x].firstchoice() == coursesArray[y].course()
-                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)    #enroll the students into the courses provided that they meet all of the requirements
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course1(coursesArray[y].course())
-                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course2(coursesArray[y].course())
-                end
-            elsif studentArray[x].secondchoice() == coursesArray[y].course()
-                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course1(coursesArray[y].course())
-                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course2(coursesArray[y].course())
-                end
-            elsif studentArray[x].thirdchoice() == coursesArray[y].course()
-                if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course1(coursesArray[y].course())
-                elsif (coursesArray[y].space() == "free") && (studentArray[x].course_2().nil?)
-                    coursesArray[y].enroll(studentArray[x].id())
-                    studentArray[x].course2(coursesArray[y].course())
-                end
-            end 
-        end
+            if (studentArray[x].numberOfCourses() > 0) && (coursesArray[y].section() > 0)
+                if studentArray[x].firstchoice() == coursesArray[y].course()
+                    place(studentArray, coursesArray, x, y)
+                elsif studentArray[x].secondchoice() == coursesArray[y].course()
+                    place(studentArray, coursesArray, x, y)
+                elsif studentArray[x].thirdchoice() == coursesArray[y].course()
+                    place(studentArray, coursesArray, x, y)
+                end 
+            end
+        end     
     end
-=end
+    for j in 0..n         
+        puts studentArray[j].course_1
+        puts studentArray[j].course_2
+    end
 end
 
 def cancelSection(studentArray, coursesArray)
-
 end
 
 def sortPriority(studentArray)
@@ -114,10 +109,13 @@ coursesInput.each do |sub|
     coursesArray << Course.new(sub[0], sub[1], sub[2], sub[3]) #get in the input data of the courses into an array of Course class instances 
 end
 
+for i in 0..(studentArray.length() - 1)
+    if studentArray[i].numberOfCourses() == 1
+        studentArray[i].course2("No second course")
+    end
+end    
 sortPriority(studentArray)          #sort the students by priority
 assignClasses(studentArray, coursesArray)   #assign students to courses
 cancelSection(studentArray, coursesArray)
 printStudents(studentArray)
 printClasses(coursesArray)
-
-

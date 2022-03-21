@@ -19,12 +19,15 @@ class Student
         @priority = @priority - @cust_semester
         @priority = @priority + @cust_courses.length()   #calculate priority by having point system for the traits that the student has
                                                     
+        if (@cust_firstchoice == "N/A")
+            @priority = @priority - 1
+        end
         if (@cust_secondchoice == "N/A")
             @priority = @priority - 1
         end
         if (@cust_thirdchoice == "N/A")
             @priority = @priority - 1
-        end    
+        end
     end
     def priority()
         @priority
@@ -42,6 +45,9 @@ class Student
     end
     def id()
         @cust_ID
+    end
+    def numberOfCourses()
+        @cust_desired
     end
     def coursesTaken(courses)   
         @cust_courses = courses

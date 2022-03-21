@@ -14,6 +14,9 @@ class Course
     def course()
         @cust_course
     end
+    def section()
+        @cust_sections
+    end
     def array()
         @arr = Array.new(@cust_sections) { Array.new(@maxSeats){"emp"}}       #create the array that will have the sections with students
         #for i in (0...(@arr.size() - 1))
