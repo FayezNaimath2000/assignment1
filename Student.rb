@@ -17,7 +17,7 @@ class Student
             @priority += 0
         end
         @priority = @priority - @cust_semester
-        @priority = @priority + @cust_courses.length()   #calculate priority by having point system for the traits that the student has
+        @priority = @priority + @cust_courses.length()  #calculate priority by having point system for the traits that the student has
                                                     
         if (@cust_secondchoice == "N/A")
             @priority = @priority - 1

@@ -2,7 +2,7 @@
 #CSC415
 #Assignment1
 class Course
-    def initialize(course_ID, numberSections, min_Seats, max_Seats) #initialize variables
+    def initialize(course_ID, numberSections, min_Seats, max_Seats)  #initialize variables
         @cust_course = course_ID
         numberSections = numberSections.to_i
         @cust_sections = numberSections

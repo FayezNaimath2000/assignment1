@@ -7,7 +7,7 @@ def assignClasses(studentArray, coursesArray)
     n = studentArray.length() - 1 
     m = coursesArray.length() - 1
     for y in 0..m
-        coursesArray[y].array() #create the arrays for each course
+        coursesArray[y].array()  #create the arrays for each course
     end
     for x in 0..n
         for y in 0..m
