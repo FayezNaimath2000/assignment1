@@ -36,8 +36,10 @@ def assignClasses(studentArray, coursesArray)
         end     
     end
     for j in 0..n         
-        puts studentArray[j].course_1
-        puts studentArray[j].course_2
+        puts studentArray[j].id()
+       puts studentArray[j].priority()
+       puts studentArray[j].course_1
+      puts studentArray[j].course_2
     end
 end
 
@@ -111,11 +113,18 @@ end
 
 for i in 0..(studentArray.length() - 1)
     if studentArray[i].numberOfCourses() == 1
-        studentArray[i].course2("No second course")
+        studentArray[i].course2("None")
+    end
+    if studentArray[i].numberOfCourses() == 0
+        studentArray[i].course2("None")
+        studentArray[i].course1("None")
     end
 end    
 sortPriority(studentArray)          #sort the students by priority
 assignClasses(studentArray, coursesArray)   #assign students to courses
-cancelSection(studentArray, coursesArray)
+#cancelSection(studentArray, coursesArray)
+for i in 0..(coursesArray.length() - 1)
+    #coursesArray[i].check()
+end
 printStudents(studentArray)
 printClasses(coursesArray)
