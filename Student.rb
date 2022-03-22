@@ -43,6 +43,12 @@ class Student
         @cust_secondchoice = secondchoice
         @cust_thirdchoice = thirdchoice
     end
+    def reason(excuse)
+        @exc = excuse
+    end
+    def reason1()
+        @exc
+    end
     def id()
         @cust_ID
     end

@@ -2,6 +2,33 @@ require 'csv'
 require './Student'
 require './Course'
 
+def printStudents(studentArray)
+    post = Array.new(studentArray.length()) { Array.new(4)}
+    for i in 0..(studentArray.length() -1)
+        post[i][0] = studentArray[i].id()
+        post[i][1] = studentArray[i].course_1()
+        post[i][2] = studentArray[i].course_2()
+        post[i][3] = studentArray[i].reason1()
+    end
+    CSV.open('students.csv', 'w') do |csv|
+        post.each { |ar| csv << ar }
+    end
+end
+=begin
+def printClasses(coursesArray)
+    post = Array.new(coursesArray.length()) { Array.new(6)}
+    
+    for i in 0..(studentArray.length() -1)
+        post[i][0] = coursesArray[i].course()
+        post[i][1] = studentArray[i].course_1()
+        post[i][2] = studentArray[i].course_2()
+        post[i][3] = studentArray[i].reason1()
+    end
+    CSV.open('courses.csv', 'w') do |csv|
+        post.each { |ar| csv << ar }
+    end
+end
+=end
 def place(studentArray, coursesArray, x, y)
     if (coursesArray[y].space() == "free") && (studentArray[x].course_1().nil?)    #enroll the students into the courses provided that they meet all of the requirements
         coursesArray[y].enroll(studentArray[x].id())
@@ -36,14 +63,11 @@ def assignClasses(studentArray, coursesArray)
         end     
     end
     for j in 0..n         
-        puts studentArray[j].id()
-       puts studentArray[j].priority()
-       puts studentArray[j].course_1
-      puts studentArray[j].course_2
+     #   puts studentArray[j].id()
+    #   puts studentArray[j].priority()
+     #  puts studentArray[j].course_1
+    #  puts studentArray[j].course_2
     end
-end
-
-def cancelSection(studentArray, coursesArray)
 end
 
 def sortPriority(studentArray)
@@ -122,9 +146,9 @@ for i in 0..(studentArray.length() - 1)
 end    
 sortPriority(studentArray)          #sort the students by priority
 assignClasses(studentArray, coursesArray)   #assign students to courses
-#cancelSection(studentArray, coursesArray)
+
 for i in 0..(coursesArray.length() - 1)
-    #coursesArray[i].check()
+    coursesArray[i].check()
 end
 printStudents(studentArray)
-printClasses(coursesArray)
+#printClasses(coursesArray)
