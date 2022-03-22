@@ -1,11 +1,12 @@
 #Fayez Naimath
 #CSC415
 #Assignment1
+#Student class that has information on all the students
 class Student
-    def assignPriority()
-        @priority = 0
+    def assignPriority()#calculate priority by having point system for the traits that the student has
+        @priority = 0   #higher points, higher prioirty
         if (@cust_year == "Senior")
-            @priority += 3
+            @priority += 3  #if student is upperclassmen, have higher points
         end
         if (@cust_year == "Junior")
             @priority += 2
@@ -16,10 +17,10 @@ class Student
         if (@cust_year == "First year student")
             @priority += 0
         end
-        @priority = @priority - @cust_semester
-        @priority = @priority + @cust_courses.length()   #calculate priority by having point system for the traits that the student has
+        @priority = @priority - @cust_semester  #if student has more semesters left, lower points
+        @priority = @priority + @cust_courses.length() #if student has taken more courses, higher points
                                                     
-        if (@cust_firstchoice == "N/A")
+        if (@cust_firstchoice == "N/A") #less points if student does not have options
             @priority = @priority - 1
         end
         if (@cust_secondchoice == "N/A")
@@ -31,7 +32,7 @@ class Student
     end
     def priority()
         @priority
-    end    
+    end    #initialized variables
     def initialize(student_ID, year, semester, coursesDesired, firstchoice, secondchoice, thirdchoice)  #initialize variables
         @cust_ID = student_ID
         @cust_year = year                   
@@ -43,7 +44,7 @@ class Student
         @cust_secondchoice = secondchoice
         @cust_thirdchoice = thirdchoice
     end
-    def reason(excuse)
+    def reason(excuse)  #getters and setters
         @exc = excuse
     end
     def reason1()
