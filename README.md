@@ -1,4 +1,4 @@
-# assignment1
+# Easy Enroll
 Assumptions: Student does not have repeating course id’s in their “courses taken before”. 
 Students who are not placed into their choices will not be placed into any other course as we are 
 assuming that they do not want to. Also, we are assuming that if a student did not a 2nd or 3rd choice,
